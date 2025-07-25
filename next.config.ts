@@ -1,7 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  reactStrictMode: true,
+  images: {
+    domains: ['placehold.co', 'via.placeholder.com', 'images.unsplash.com'],
+  },
+  typedRoutes: true
 };
 
 export default nextConfig;
