@@ -48,17 +48,6 @@ export default function DeleteProductButton({ slug }: { slug: string }) {
     setIsModalOpen(false);
   };
 
-  const handleDelete = async () => {
-    const confirmed = confirm('Are you sure you want to delete this product?');
-    if (!confirmed) return;
-
-    console.log('Deleting product with slug:', slug);
-    await deleteProductDB(slug);
-    router.push('/');
-  };
-
-
-
   return (
     <>
       <Button

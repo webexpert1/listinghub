@@ -4,7 +4,7 @@ import './globals.css';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import IndexedDBInitializer from '@/components/IndexedDBInitializer';
-
+import { Suspense } from 'react';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   authors: [{ name: 'ListingHub Inc.' }],
   creator: 'Richardson/ListingHub',
   publisher: 'ListingHub',
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'), 
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'),
 
   openGraph: {
     title: 'ListingHub - E-commerce Product Listing Platform',
@@ -67,7 +67,15 @@ export default function RootLayout({
         <IndexedDBInitializer />
         <Navbar />
         <div className='flex-grow'>
-          {children}
+          <Suspense fallback={
+            <div className="flex justify-center items-center h-full min-h-[50vh]">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+              <p className="ml-4 text-gray-700">Loading content...</p>
+            </div>
+          }>
+            {children}
+          </Suspense>
+
         </div>
         <Footer />
 

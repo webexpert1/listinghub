@@ -11,6 +11,7 @@ import Link from 'next/link';
 import DeleteProductButton from '@/components/DeleteProductButton';
 import Button from '@/components/ui/Button';
 import BackButton from '@/components/ui/BackButton';
+import Image from 'next/image';
 
 
 export default function ProductDetailsPage() {
@@ -69,7 +70,7 @@ export default function ProductDetailsPage() {
       </div>
 
       <h1 className="text-3xl font-bold">{product.name}</h1>
-      <img src={product.imageUrl} alt={product.name} className="my-4 rounded" />
+      <Image width={300} height={300} src={product.imageUrl} alt={product.name} className="my-4 rounded" />
       <p className="text-2xl font-bold">{formattedPrice}</p>
       <p>{product.description}</p>
     </div>
