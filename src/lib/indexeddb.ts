@@ -97,7 +97,7 @@ export const addProductDb = (productData: ProductFormData): Promise<Product> => 
  * @returns {Promise<Product[]>} A promise that resolves with an array of all products.
  */
 export async function getProductsDB(): Promise<Product[]> {
-    await initDB(); // Ensure DB is initialized first
+    await initDB();
     if (!db) {
         throw new Error('IndexedDB not initialized.');
     }
@@ -147,13 +147,13 @@ export const getProductByIdDB = (id: string): Promise<Product | undefined> => {
  * @returns {Promise<Product | undefined>} A promise that resolves with the updated product or undefined if not found.
  */
 export async function updateProductDB(updatedProduct: Product): Promise<void> {
-  await initDB(); // Ensure the database is initialized
+  await initDB();
   if (!db) {
     throw new Error('IndexedDB not initialized.');
   }
   const tx = db.transaction('products', 'readwrite');
   const store = tx.objectStore('products');
-  const request = store.put(updatedProduct); // overwrites based on ID
+  const request = store.put(updatedProduct);
 
   return new Promise((resolve, reject) => {
     request.onsuccess = () => {
@@ -169,9 +169,6 @@ export async function updateProductDB(updatedProduct: Product): Promise<void> {
   });
 }
 
-
-
-
 /**
  * @function deleteProductDB
  * @description Deletes a product by its ID from IndexedDB.
@@ -179,23 +176,36 @@ export async function updateProductDB(updatedProduct: Product): Promise<void> {
  * @returns {Promise<void>} A promise that resolves when the product is successfully deleted.
  */
 export async function deleteProductDB(slug: string): Promise<void> {
-    await initDB(); // Ensure the database is initialized
+    await initDB();
     if (!db) {
         throw new Error('IndexedDB not initialized.');
     }
     return new Promise((resolve, reject) => {
-        const objectStore = getTransaction('readwrite');
-        const request = objectStore.delete(slug);
+        if (!db) {
+            throw new Error('IndexedDB not initialized.');
+        }
+        const transaction = db.transaction(STORE_NAME, 'readwrite');
+        const store = transaction.objectStore(STORE_NAME);
+        const index = store.index('slug');
 
-        request.onsuccess = () => {
-            console.log('Product deleted successfully.');
-            resolve();
+        // First, get the product by slug
+        const getRequest = index.get(slug);
+
+        getRequest.onsuccess = () => {
+            const product = getRequest.result;
+
+            if (!product) {
+                reject(new Error(`Product with slug "${slug}" not found.`));
+                return;
+            }
+
+            // Delete the product
+            const deleteRequest = store.delete(product.id);
+
+            deleteRequest.onsuccess = () => resolve();
+            deleteRequest.onerror = () => reject(deleteRequest.error);
         };
 
-        request.onerror = (event) => {
-            const target = event.target as IDBRequest;
-            console.error('Error deleting product:', target.error);
-            reject(target.error);
-        };
+        getRequest.onerror = () => reject(getRequest.error);
     });
 }

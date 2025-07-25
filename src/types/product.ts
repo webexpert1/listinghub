@@ -1,4 +1,11 @@
-
+/**
+ * @enum ProductCategory
+ * @description Enum representing the different categories a product can belong to.
+ * @property {string} Electronics - Category for electronic products.
+ * @property {string} Clothing - Category for clothing items.
+ * @property {string} Fashion - Category for fashion-related products.
+ * @property {string} Footwear - Category for footwear products.
+ */
 export enum ProductCategory {
     Electronics = "electronics",
     Clothing = "clothing",
@@ -47,7 +54,7 @@ export interface Category {
  * excluding auto-generated fields like id, createdAt, updatedAt.
  */
 export interface ProductFormData {
-    id?: string; // Optional for new products
+    id?: string;
     name: string;
     description: string;
     slug?: string; 

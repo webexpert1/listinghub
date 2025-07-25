@@ -1,16 +1,11 @@
-'use client'; // This page needs to be a Client Component for form interactivity
+'use client'; 
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation'; // Hook for navigation
+import { useRouter } from 'next/navigation';
 import ProductForm from '@/components/ProductForm';
-import { addProductDb } from '@/lib/indexeddb'; // Import IndexedDB function
+import { addProductDb } from '@/lib/indexeddb';
 import { ProductFormData } from '@/types/product';
 
-/**
- * @function AddProductPage
- * @description Page for adding a new product to the e-commerce platform.
- * Uses the reusable ProductForm component.
- */
 export default function AddProductPage() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -23,15 +18,12 @@ export default function AddProductPage() {
    */
   const handleAddProduct = async (data: ProductFormData) => {
     setIsLoading(true);
-    setFormError(null); // Clear previous errors
+    setFormError(null); 
     try {
       await addProductDb(data);
       console.log('Product added successfully!');
       // After successful addition, navigate back to the home page
       router.push('/');
-      // Optional: router.refresh() if you want to force re-render of server components
-      // on the home page, though for client-side IndexedDB, the HomePage useEffect
-      // will re-fetch anyway.
     } catch (error) {
       console.error('Error adding product:', error);
       setFormError('Failed to add product. Please try again.');

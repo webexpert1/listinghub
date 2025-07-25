@@ -1,5 +1,25 @@
 import React from 'react';
 
+/**
+ * Interface defining the props for the Input component.
+ *
+ * @interface InputProps
+ * @property {string} id - The unique identifier for the input element.
+ * @property {string} name - The name attribute for the input element.
+ * @property {string} [label] - Optional label text displayed above the input.
+ * @property {string} [placeholder] - Optional placeholder text inside the input.
+ * @property {string} [className] - Optional additional CSS classes for the input element.
+ * @property {string} [containerClassName] - Optional additional CSS classes for the input container.
+ * @property {string} [type] - The type of the input (e.g., text, number). Defaults to 'text'.
+ * @property {string | number} [value] - The current value of the input.
+ * @property {boolean} [required] - Whether the input is required. Defaults to false.
+ * @property {boolean} [disabled] - Whether the input is disabled.
+ * @property {string} [autoComplete] - The autocomplete attribute for the input.
+ * @property {string} [error] - Error message to display below the input.
+ * @property {string} [step] - Step attribute for inputs like number or range.
+ * @property {(event: React.ChangeEvent<HTMLInputElement>) => void} [onChange] - Change event handler.
+ */
+
 interface InputProps {
     label?: string;
     placeholder?: string;
@@ -14,6 +34,8 @@ interface InputProps {
     autoComplete?: string;
     error?: string
     step?: string;
+    min?: string;
+    max?: string;
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   },
   description: 'Discover and manage a wide range of products with ease on ListingHub.',
   keywords: ['e-commerce', 'products', 'online shopping', 'tech', 'accessories', 'furniture', 'apparel'],
-  authors: [{ name: 'ListingHub Inc.' }], // Replace with actual author
+  authors: [{ name: 'ListingHub Inc.' }],
   creator: 'Richardson/ListingHub',
   publisher: 'ListingHub',
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'), 
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'ListingHub - E-commerce Product Listing Platform',
     description: 'Discover and manage a wide range of products with ease on ListingHub.',
-    url: '/', // Relative to metadataBase
+    url: '/',
     siteName: 'ListingHub',
     images: [
       {

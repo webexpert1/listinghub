@@ -1,5 +1,17 @@
 import React from 'react';
 
+/**
+ * Interface defining the props for the Button component.
+ *
+ * @interface ButtonProps
+ * @property {React.ReactNode} children - The content inside the button.
+ * @property {string} [className] - Additional CSS classes for the button.
+ * @property {boolean} [disabled] - Whether the button is disabled.
+ * @property {() => void} [onClick] - Click event handler.
+ * @property {'button' | 'submit' | 'reset'} [type] - The button type attribute.
+ * @property {'primary' | 'secondary' | 'danger'} [variant] - Visual style variant of the button.
+ * @property {'small' | 'medium' | 'large'} [size] - Size variant of the button.
+ */
 interface ButtonProps {
     children: React.ReactNode;
     className?: string;

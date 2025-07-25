@@ -4,7 +4,18 @@ import React, { useState, useEffect } from 'react';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
 import { ProductFormData } from '@/types/product';
+import { generateSlug } from '@/lib/generateSlug';
 
+/**
+ * Interface defining the props for the ProductForm component.
+ *
+ * @interface ProductFormProps
+ * @property {ProductFormData | null} [initialData] - Optional initial data to populate the form (used for editing).
+ * @property {boolean} isLoading - Indicates if the form is in a loading state (e.g., submitting).
+ * @property {(data: ProductFormData) => Promise<void>} onSubmit - Function to handle form submission.
+ * @property {string} submitButtonText - Text to display on the submit button.
+ * @property {string | null} [formError] - Optional error message to display at the form level.
+ */
 interface ProductFormProps {
     initialData?: ProductFormData | null;
     isLoading: boolean;
@@ -87,7 +98,7 @@ export default function ProductForm({
         }
 
         // Generate slug from name (e.g., lowercase, replace spaces with dashes)
-        const slug = formData.name.trim().toLowerCase().replace(/\s+/g, '-');
+        const slug = generateSlug(formData.name.trim().toLowerCase());
 
         if (validateForm()) {
             await onSubmit({...formData, slug});
@@ -145,7 +156,8 @@ export default function ProductForm({
                 onChange={handleChange}
                 placeholder="e.g., 25000"
                 required
-                step="0.01"
+                step="1"
+                min="0"
                 error={errors.price}
             />
 

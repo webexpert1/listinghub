@@ -14,6 +14,7 @@ export default function ProductImage({ product }) {
                 sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                 className="w-full h-64 object-cover rounded-lg"
                 onError={() => setImgSrc('/images/fallback.jpg')}
+                priority
             />
         </div>
     );

@@ -9,6 +9,8 @@ import LoadingSpinner from '@/components/LoadingSpinner';
 import EmptyState from '@/components/EmptyState';
 import Link from 'next/link';
 import DeleteProductButton from '@/components/DeleteProductButton';
+import Button from '@/components/ui/Button';
+import BackButton from '@/components/ui/BackButton';
 
 
 export default function ProductDetailsPage() {
@@ -55,15 +57,16 @@ export default function ProductDetailsPage() {
 
   return (
     <div className="p-6">
+      <div className="flex justify-between items-center">
+        <BackButton />
 
-
-      <div className='flex mb-4 flex flex-end justify-end items-center space-x-4'>
-        <Link href={`/product/${product.slug}/edit`}>
-          <button className="mt-4 px-4 py-2 bg-yellow-500 text-white rounded">Edit Product</button>
-        </Link>
-        <DeleteProductButton slug={product.slug || ''} />
+        <div className=' space-x-4'>
+          <Link href={`/product/${product.slug}/edit`}>
+            <Button className=" px-4 py-2 bg-yellow-500 text-white rounded">Edit Product</Button>
+          </Link>
+          <DeleteProductButton slug={product.slug || ''} />
+        </div>
       </div>
-
 
       <h1 className="text-3xl font-bold">{product.name}</h1>
       <img src={product.imageUrl} alt={product.name} className="my-4 rounded" />
