@@ -57,7 +57,7 @@ export default function ProductDetailsPage() {
   }).format(product.price);
 
   return (
-    <div className="p-6">
+    <div className="p-6  mb-12">
       <div className="flex justify-between items-center">
         <BackButton />
 
@@ -69,10 +69,20 @@ export default function ProductDetailsPage() {
         </div>
       </div>
 
-      <h1 className="text-3xl font-bold">{product.name}</h1>
-      <Image width={300} height={300} src={product.imageUrl} alt={product.name} className="my-4 rounded" />
-      <p className="text-2xl font-bold">{formattedPrice}</p>
-      <p>{product.description}</p>
+      <h1 className="text-3xl font-bold mt-6">{product.name}</h1>
+      <div className="flex flex-col lg:flex-row lg:items-start lg:space-x-8 ">
+        <Image
+          width={300}
+          height={200}
+          src={product.imageUrl}
+          alt={product.name}
+          className="my-4 rounded w-full lg:w-3/5 object-contain"
+        />
+        <div className="lg:w-2/5 mt-4 lg:mt-0">
+          <p className="text-2xl font-bold">{formattedPrice}</p>
+          <p>{product.description}</p>
+        </div>
+      </div>
     </div>
   );
 }

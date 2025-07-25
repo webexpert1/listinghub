@@ -33,6 +33,7 @@ export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [uniqueCategories, setUniqueCategories] = useState<string[]>([]);
+  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
 
   // State for filters, synchronized with URL search params
   const searchParams = useSearchParams();
@@ -174,8 +175,44 @@ export default function HomePage() {
       <h1 className="text-4xl font-extrabold text-gray-900 mb-8 text-center">
         All Products
       </h1>
+      {/* Toggle Button for Mobile */}
+      <button
+        className="lg:hidden bg-blue-500 text-white px-4 py-2 rounded mb-4"
+        onClick={() => setIsFiltersOpen(!isFiltersOpen)}
+      >
+        {isFiltersOpen ? 'Hide Filters' : 'Show Filters'}
+      </button>
 
-      <div className="flex flex-col lg:flex-row gap-6">
+      {/* Filters Section */}
+      <div
+        className={`flex flex-col lg:flex-row gap-6 ${isFiltersOpen ? 'block' : 'hidden'
+          } lg:block`}
+      >
+        <div className='lg:flex space-x-6 '>
+          <div className="">
+
+            <DynamicCategoryFilter
+              categories={uniqueCategories}
+              selectedCategory={selectedCategory}
+              onSelectCategory={handleCategoryChange}
+            />
+          </div>
+
+          <div className="">
+            <DynamicPriceFilter
+              initialMinPrice={minPriceFilter}
+              initialMaxPrice={maxPriceFilter}
+              onApplyFilter={handlePriceFilterChange}
+            />
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+      {/* <div className=" flex flex-col lg:flex-row gap-6">
         <DynamicCategoryFilter
           categories={uniqueCategories}
           selectedCategory={selectedCategory}
@@ -186,7 +223,7 @@ export default function HomePage() {
           initialMaxPrice={maxPriceFilter}
           onApplyFilter={handlePriceFilterChange}
         />
-      </div>
+      </div> */}
 
       <div className="flex flex-col lg:flex-row gap-6 mb-8">
 

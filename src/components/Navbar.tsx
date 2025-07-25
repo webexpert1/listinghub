@@ -6,17 +6,23 @@ export default function Navbar() {
     const pathName = usePathname();
 
     return (
-        <nav className="bg-blue-600 p-4 shadow-md">
-            <div className="container mx-auto flex justify-between items-center">
-                <Link href="/" className="text-white text-2xl font-bold rounded-md transition-colors" >
-                    ListingHub
-                </Link>
-                <div>
-                    <Link href="/" className={`px-3 py-2 rounded-md text-lg font-medium transition-colors hover:bg-blue-500 hover:text-white ${pathName === "/" ? 'bg-blue-500 text-white' : 'text-blue-100 hover:bg-blue-500'}`}> Home
+        <nav className="sticky top-0 z-50 bg-white shadow-md">
+            <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+                <Link href="/" className="text-xl font-bold text-blue-600">ListingHub</Link>
+                <div className="space-x-6">
+                    <Link
+                        href="/"
+                        className={`${pathName === '/' ? 'text-blue-600 font-semibold underline' : 'text-gray-700 hover:text-blue-500'
+                            }`}
+                    >
+                        Home
                     </Link>
-                    <Link href="/admin/add-product" className={`px-3 py-2 rounded-md text-lg font-medium transition-colorrs ${
-                        pathName === "/admin/add-product" ? 'bg-blue-500 text-white' : 'text-blue-100 hover:bg-blue-500'
-                    }`}> Add Product
+                    <Link
+                        href="/admin/add-product"
+                        className={`${pathName === '/admin/add-product' ? 'text-blue-600 font-semibold underline' : 'text-gray-700 hover:text-blue-500'
+                            }`}
+                    >
+                        Add Product
                     </Link>
                 </div>
             </div>

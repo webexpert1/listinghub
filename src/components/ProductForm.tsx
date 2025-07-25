@@ -179,7 +179,7 @@ export default function ProductForm({
                 type="url"
                 value={formData.imageUrl}
                 onChange={handleChange}
-                placeholder="e.g., https://example.com/product.jpg"
+                placeholder="e.g., https://images.unsplash.com/photo-1579298245158-33e8f568f510?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 required
                 error={errors.imageUrl}
             />

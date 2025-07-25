@@ -88,7 +88,8 @@ export default function PriceFilter({
           value={minPrice}
           onChange={handleMinChange}
           placeholder="0"
-          step="0.01"
+          step="1"
+          min='0'
           containerClassName="flex-grow"
         />
         <Input
@@ -98,8 +99,9 @@ export default function PriceFilter({
           type="number"
           value={maxPrice}
           onChange={handleMaxChange}
-          placeholder="Any"
-          step="0.01"
+          placeholder="0"
+          step="1"
+          min='0'
           containerClassName="flex-grow"
         />
         <div className="flex gap-2 w-full sm:w-auto mb-4 ">
