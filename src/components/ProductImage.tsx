@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import { useState } from 'react';
+import { Product } from '@/types/product';
 
-export default function ProductImage({ product }) {
+export default function ProductImage({ product }: { product: Product }) {
     const [imgSrc, setImgSrc] = useState(product.imageUrl);
 
     return (
