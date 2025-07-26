@@ -24,7 +24,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                     <p className="text-sm text-gray-500 mb-2 capitalize">
                         Category: {product.category}
                     </p>
-                    <p className="text-2xl font-bold text-blue-700 mt-auto">
+                    <p className="text-2xl font-bold text-gray-900 mt-auto">
                         {formattedPrice}
                     </p>
                 </div>

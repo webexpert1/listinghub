@@ -57,6 +57,12 @@ npm run dev
 
 This generates optimized assets in the .next folder.
 
+Run Tests
+To run the tests:
+```bash
+npm run test
+```
+
 ## SEO Implementation
 SEO was an important focus for this project, and several Next.js features were used to make sure the site is search-engine friendly:
 

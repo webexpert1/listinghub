@@ -57,7 +57,7 @@ export default function ProductDetailsPage() {
   }).format(product.price);
 
   return (
-    <div className="p-6  mb-12">
+    <div className="container mx-auto p-8 flex-grow  mb-12">
       <div className="flex justify-between items-center">
         <BackButton />
 

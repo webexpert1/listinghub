@@ -210,21 +210,6 @@ export default function HomePage() {
       </div>
 
 
-
-
-      {/* <div className=" flex flex-col lg:flex-row gap-6">
-        <DynamicCategoryFilter
-          categories={uniqueCategories}
-          selectedCategory={selectedCategory}
-          onSelectCategory={handleCategoryChange}
-        />
-        <DynamicPriceFilter
-          initialMinPrice={minPriceFilter}
-          initialMaxPrice={maxPriceFilter}
-          onApplyFilter={handlePriceFilterChange}
-        />
-      </div> */}
-
       <div className="flex flex-col lg:flex-row gap-6 mb-8">
 
         {/* Product Listing Section */}
